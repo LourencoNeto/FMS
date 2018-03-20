@@ -7,7 +7,7 @@ surface_height = 500
 surface_width = 240
 main_surface = pygame.display.set_mode((surface_width, surface_height))
 clock = pygame.time.Clock()
-list = ["Arsenal", "Liverpool", "Chelsea"]
+list = ["Arsenal", "Liverpool", "Chelsea"] #pegar todas os nomes do banco de dados
 box_list = []
 y = 30
 for name in list:
