@@ -57,6 +57,7 @@ class Button:
         self.text_surface = self.font.render(self.text, True, self.color_text)
         self.dx = dx
         self.dy = dy
+        self.active = False
 
     def draw(self, main_surface):
         main_surface.fill(self.color_background, self.rect)
@@ -67,10 +68,11 @@ class Button:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 print("2")  #############################################################################################
-                self.color_rect = self.color_active
-                self.draw(main_surface)
-                return True
-            else: return False
+                self.active = not self.active
+            else:
+                self.active = False
+            self.color_rect = self.color_active if self.active else self.color_inactive
+            return self.active
 
 
 class SelectBox:
@@ -104,3 +106,6 @@ class SelectBox:
 
     def get_text(self):
         return self.text
+
+    def get_selection(self):
+        return self.active
