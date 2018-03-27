@@ -37,16 +37,14 @@ class Game:
         self.handle_event_choice(home_team, home_choice)
         self.handle_event_choice(away_team, away_choice)
         actual_score = self.scores
-        
-        
         if previous_score != actual_score:
-            
             scorer = -1
             if previous_score[0] != actual_score[0]: #Goal from the Home Team
                 scorer = 0
             elif previous_score[1] != actual_score[1]: #Goal from the Away Team
                 scorer = 1
             self.original_field_formation(home_team, away_team, scorer)
+        print(self.ball_owner)
         return home_choice, away_choice
     
     def handle_event_choice(self, team, choices):
@@ -97,7 +95,15 @@ class Game:
                     self.field[new_position[0]][new_position[1]] = team[i]                   
                     team[i].position = new_position
                 elif choice == "Pass":
-                    print(team[i].field_owner)
+                    #print(team[i].field_owner)
+                    order_formation_player_receive_ball = self.found_the_closest_player(team, team[i])
+                    representation = -1
+                    if team[i].field_owner == "Home":
+                        representation = 1
+                    elif team[i].field_owner == "Away":
+                        representation = 2
+                        
+                    self.ball_owner = [representation, order_formation_player_receive_ball]
                 elif choice == "Shoot":
                     #print(team[i].group_player)
                     
@@ -112,15 +118,32 @@ class Game:
                     formula = (finishing*shot_power)/(distance*gk_handling)
                     #print(team[i].position, self.away_team[0].position, distance)
                     #print(formula, team[i].position, team[i].field_owner)
-                    if(formula > 0.3 and team[i].field_owner == "Home"):
-                        self.scores[0] = self.scores[0] + 1
-                        team[i].goals = team[i].goals + 1
-                    elif(formula > 0.3 and team[i].field_owner == "Away"):
-                        self.scores[1] = self.scores[1] + 1
-                        team[i].goals = team[i].goals + 1
+                    #if(formula > 0.3 and team[i].field_owner == "Home"):
+                    if(team[i].field_owner == "Home"):
+                        if(formula > 0.6):
+                            self.scores[0] = self.scores[0] + 1
+                            team[i].goals = team[i].goals + 1
+                        else:
+                            self.ball_owner = [2, 0] #Ball will be with the goalkeeper from the other team
+                    elif(team[i].field_owner == "Away"):
+                        if(formula > 0.6):
+                            self.scores[1] = self.scores[1] + 1
+                            team[i].goals = team[i].goals + 1
+                        else:
+                            self.ball_owner = [1, 0] #Ball will be with the goalkeeper from the other team
+            else: #Now, let's analyze the goalkeeper
+                representation = -1
+                if team[i].field_owner == "Home":
+                    representation = 1
+                elif team[i].field_owner == "Away":
+                    representation = 2
+                if self.ball_owner == [representation, 0]: #The GoalKeeper has the ball
+                    order_formation_player_receive_ball = self.found_the_closest_player(team, team[i])
+                    self.ball_owner = [representation, order_formation_player_receive_ball]
             i = i + 1
             
     def aux(self, player, choice):
+        "This function is responsible to help the handle_event_choice method to not let the player with the ball run to its goalkeeper"
         aux_player = []
         aux_choice = []
         aux_player.append(player)
@@ -160,6 +183,18 @@ class Game:
             self.ball_owner = [2, 10]
         elif scorer == 1:
             self.ball_owner = [1, 10]
+            
+    def found_the_closest_player(self, team, player_with_ball):
+        min_distance = 14624 #Distance between 2 opposite corners
+        player_to_receive_order = -1
+        for free_player in team:
+            
+            if free_player.position != player_with_ball.position:
+                distance_fp_pwb = self.distance_measure(free_player, player_with_ball)
+                if distance_fp_pwb < min_distance:
+                    min_distance = distance_fp_pwb
+                    player_to_receive_order = free_player.team_queue
+        return player_to_receive_order
         
 
 class Player:
@@ -212,11 +247,13 @@ class Player:
                 
             else: #The player is not on conditions to shoot
             
-                if rand_number >= 50: #This will indicate that the player should pass
+                if rand_number >= 80: #This will indicate that the player should pass
                     choice = "Pass"
                 else: #This will indicate that the player should run
                     choice = "Run"
-                    
+            
+            if self.group_player == "GoalKeeper": #Pick it up the ball after a missing shot
+                choice = "Pass"
         else: #The ball is not with the player
             choice = "Run"
         self.choice = choice
