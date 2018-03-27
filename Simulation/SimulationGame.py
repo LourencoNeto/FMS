@@ -36,73 +36,73 @@ def Filling_Field(kickoff, home_starting_team, away_starting_team):
     
     
     "GoalKeepers"
-    kickoff.field[33][2] = kc.Player(home_starting_team[0], [33, 2], "GoalKeeper", "Home")
+    kickoff.field[33][2] = kc.Player(home_starting_team[0], [33, 2], "GoalKeeper", "Home", 0)
     HomeTeam.append(kickoff.field[33][2])
     
-    kickoff.field[33][100 - 2] = kc.Player(away_starting_team[0], [33, 100 - 2], "GoalKeeper", "Away")
+    kickoff.field[33][100 - 2] = kc.Player(away_starting_team[0], [33, 100 - 2], "GoalKeeper", "Away", 0)
     AwayTeam.append(kickoff.field[33][100 - 2])
 
     "Defenders"
-    kickoff.field[24][26] = kc.Player(home_starting_team[1][0], [24, 26], "Defender", "Home")
+    kickoff.field[24][26] = kc.Player(home_starting_team[1][0], [24, 26], "Defender", "Home", 1)
     HomeTeam.append(kickoff.field[24][26])
     
-    kickoff.field[24][100 - 26] = kc.Player(away_starting_team[1][0], [24, 100 - 26], "Defender", "Away")
+    kickoff.field[24][100 - 26] = kc.Player(away_starting_team[1][0], [24, 100 - 26], "Defender", "Away", 1)
     AwayTeam.append(kickoff.field[24][100 - 26])
     
-    kickoff.field[68 - 24][26] = kc.Player(home_starting_team[1][1], [68 - 24, 26], "Defender", "Home")
+    kickoff.field[68 - 24][26] = kc.Player(home_starting_team[1][1], [68 - 24, 26], "Defender", "Home", 2)
     HomeTeam.append(kickoff.field[68 - 24][26])
     
-    kickoff.field[68 - 24][100 - 26] = kc.Player(away_starting_team[1][1], [68 - 24, 100 - 26], "Defender", "Away")
+    kickoff.field[68 - 24][100 - 26] = kc.Player(away_starting_team[1][1], [68 - 24, 100 - 26], "Defender", "Away", 2)
     AwayTeam.append(kickoff.field[68 - 24][100 - 26])
     
-    kickoff.field[12][28] = kc.Player(home_starting_team[1][2], [12, 28], "Defender", "Home")
+    kickoff.field[12][28] = kc.Player(home_starting_team[1][2], [12, 28], "Defender", "Home", 3)
     HomeTeam.append(kickoff.field[12][28])
     
-    kickoff.field[12][100 - 28] = kc.Player(away_starting_team[1][2], [12, 100 - 28], "Defender", "Away")
+    kickoff.field[12][100 - 28] = kc.Player(away_starting_team[1][2], [12, 100 - 28], "Defender", "Away", 3)
     AwayTeam.append(kickoff.field[12][100 - 28])
     
-    kickoff.field[68 - 12][28] = kc.Player(home_starting_team[1][3], [68 - 12, 28], "Defender", "Home")
+    kickoff.field[68 - 12][28] = kc.Player(home_starting_team[1][3], [68 - 12, 28], "Defender", "Home", 4)
     HomeTeam.append(kickoff.field[68 - 12][28])
     
-    kickoff.field[68 - 12][100 - 28] = kc.Player(away_starting_team[1][3], [68 - 12, 100 - 28], "Defender", "Away")
+    kickoff.field[68 - 12][100 - 28] = kc.Player(away_starting_team[1][3], [68 - 12, 100 - 28], "Defender", "Away", 4)
     AwayTeam.append(kickoff.field[68 - 12][100 - 28])
      
     "MidFields"
-    kickoff.field[12][40] = kc.Player(home_starting_team[2][0], [12, 40], "MidField", "Home")
+    kickoff.field[12][40] = kc.Player(home_starting_team[2][0], [12, 40], "MidField", "Home", 5)
     HomeTeam.append(kickoff.field[12][40])
     
-    kickoff.field[12][100 - 40] = kc.Player(away_starting_team[2][0], [12, 100 - 40], "MidField", "Away")
+    kickoff.field[12][100 - 40] = kc.Player(away_starting_team[2][0], [12, 100 - 40], "MidField", "Away", 5)
     AwayTeam.append(kickoff.field[12][100 - 40])
     
-    kickoff.field[24][40] = kc.Player(home_starting_team[2][1], [24, 40], "MidField", "Home")
+    kickoff.field[24][40] = kc.Player(home_starting_team[2][1], [24, 40], "MidField", "Home", 6)
     HomeTeam.append(kickoff.field[24][40])
     
-    kickoff.field[24][100 - 40] = kc.Player(away_starting_team[2][1], [24, 100 - 40], "MidField", "Away")
+    kickoff.field[24][100 - 40] = kc.Player(away_starting_team[2][1], [24, 100 - 40], "MidField", "Away", 6)
     AwayTeam.append(kickoff.field[24][100 - 40])
     
-    kickoff.field[68 - 24][40] = kc.Player(home_starting_team[2][2], [68 - 24, 40], "MidField", "Home")
+    kickoff.field[68 - 24][40] = kc.Player(home_starting_team[2][2], [68 - 24, 40], "MidField", "Home", 7)
     HomeTeam.append(kickoff.field[68 - 24][40])
     
-    kickoff.field[68 - 24][100 -40] = kc.Player(away_starting_team[2][2], [68 - 24, 100 - 40], "MidField", "Away")
+    kickoff.field[68 - 24][100 -40] = kc.Player(away_starting_team[2][2], [68 - 24, 100 - 40], "MidField", "Away", 7)
     AwayTeam.append(kickoff.field[68 - 24][100 - 40])
     
-    kickoff.field[68 - 12][40] = kc.Player(home_starting_team[2][3], [68 - 12, 40], "MidField", "Home")
+    kickoff.field[68 - 12][40] = kc.Player(home_starting_team[2][3], [68 - 12, 40], "MidField", "Home", 8)
     HomeTeam.append(kickoff.field[68 - 12][40])
     
-    kickoff.field[68 - 12][100 - 40] = kc.Player(away_starting_team[2][3], [68 - 12, 100 - 40], "MidField", "Away")
+    kickoff.field[68 - 12][100 - 40] = kc.Player(away_starting_team[2][3], [68 - 12, 100 - 40], "MidField", "Away", 8)
     AwayTeam.append(kickoff.field[68 - 12][100 - 40])
     
     "Forwards"
-    kickoff.field[24][48] = kc.Player(home_starting_team[3][0], [24, 48], "Forward", "Home")
+    kickoff.field[24][48] = kc.Player(home_starting_team[3][0], [24, 48], "Forward", "Home", 9)
     HomeTeam.append(kickoff.field[24][48])
     
-    kickoff.field[24][100 - 48] = kc.Player(away_starting_team[3][0], [24, 100 - 48], "Forward", "Away")
+    kickoff.field[24][100 - 48] = kc.Player(away_starting_team[3][0], [24, 100 - 48], "Forward", "Away", 9)
     AwayTeam.append(kickoff.field[24][100 - 48])
     
-    kickoff.field[68 - 24][48] = kc.Player(home_starting_team[3][1], [68 - 24, 48], "Forward", "Home")
+    kickoff.field[68 - 24][48] = kc.Player(home_starting_team[3][1], [68 - 24, 48], "Forward", "Home", 10)
     HomeTeam.append(kickoff.field[68 - 24][48])
     
-    kickoff.field[68 - 24][100 - 48] = kc.Player(away_starting_team[3][1], [68 - 24, 100 - 48], "Forward", "Away")
+    kickoff.field[68 - 24][100 - 48] = kc.Player(away_starting_team[3][1], [68 - 24, 100 - 48], "Forward", "Away", 10)
     AwayTeam.append(kickoff.field[68 - 24][100 - 48])
     
     return kickoff.field, HomeTeam, AwayTeam
@@ -141,14 +141,17 @@ Away_Starting_Team = list([GoalKeeper_Away_Player, Defender_Away_Players, MidFie
 Kick_off = kc.Game()
 Kick_off.field, Home_PlayingTeam, Away_PlayingTeam = Filling_Field(Kick_off, Home_Starting_Team, Away_Starting_Team)
 field = Kick_off.field
-print(len(Home_PlayingTeam), Home_PlayingTeam[0].name, len(Away_PlayingTeam), Away_PlayingTeam[0].name)
-hc = []
-ac = []
-"Rolling the game"
-while Kick_off.timer <= 1:
-    hc, ac = Kick_off.rolling_game(Home_PlayingTeam, Away_PlayingTeam)
-    field = Kick_off.field
+#print(len(Home_PlayingTeam), Home_PlayingTeam[0].name, len(Away_PlayingTeam), Away_PlayingTeam[0].name)
+hc = [[] for y in range(90)]
+ac = [[] for y in range(90)]
 
+"Rolling the game"
+i = 0
+while Kick_off.timer <= 89:
+    hc[i], ac[i] = Kick_off.rolling_game(Home_PlayingTeam, Away_PlayingTeam)
+    field = Kick_off.field
+    i = i + 1
+print(Kick_off.scores)
 
 
 
