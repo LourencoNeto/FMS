@@ -1,8 +1,9 @@
-import pygame
 from SimulatorModules import *
 
 
 pygame.init()
+pygame.event.set_allowed(None)
+pygame.event.set_allowed([pygame.MOUSEBUTTONDOWN, pygame.QUIT, pygame.KEYDOWN])
 name = ''
 surface_height = 360
 surface_width = 480
@@ -36,9 +37,10 @@ while not done:
             done = True
             break
         Box.handle_event(ev)
-        done = Start_Button.handle_event(ev, main_surface)
+        done = Start_Button.handle_event(ev)
     if done:
         name = Box.get_text()
+        Start_Button.draw(main_surface)
     Box.draw(main_surface)
     pygame.display.flip()
     clock.tick(30)

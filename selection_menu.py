@@ -1,9 +1,10 @@
-import pygame
 from SimulatorModules import *
 import pandas as pd
 
 pygame.init()
-surface_height = 550
+pygame.event.set_allowed(None)
+pygame.event.set_allowed([pygame.MOUSEBUTTONDOWN, pygame.QUIT])
+surface_height = 540
 surface_width = 240
 main_surface = pygame.display.set_mode((surface_width, surface_height))
 font = pygame.font.SysFont(None, 20)
@@ -12,13 +13,8 @@ clock = pygame.time.Clock()
 database = pd.read_csv('Simulation/Database/FIFA18_database.csv')
 premier_league = database.loc[database.league == 'English Premier League']
 english_teams = premier_league.club.unique().tolist()
-box_list = []
-y = 40
-for name in english_teams:
-    Box = SelectBox(40, y, 170, name)
-    box_list.append(Box)
-    y += 20
-Next_Button = Button(130, 500, 100, 40, 40, 13, "Next")
+Table = SelectBoxTable(main_surface, english_teams, 40, 40, 170, 20)
+Next_Button = Button(130, 490, 100, 40, 40, 13, "Next")
 main_surface.fill((33, 94, 33))
 main_surface.blit(font.render("Selecione seu time:", True, pygame.Color("black")), (10, 10))
 Next_Button.draw(main_surface)
@@ -30,19 +26,17 @@ while not done:
         if ev.type == pygame.QUIT:
             done = True
             break
-        if Next_Button.handle_event(ev, main_surface):
-            for Box in box_list:
-                active = Box.get_selection()
-                if active:
-                    text = Box.get_text()
-                    done = True
-                    Next_Button.draw(main_surface)
-                    break
+        if Next_Button.handle_event(ev):
+            active = Table.activity()
+            if active:
+                selected = Table.selected_box()
+                text = selected.get_text()
+                done = True
+                Next_Button.draw(main_surface)
+                break
         if not done:
-            for Box in box_list:
-                Box.handle_event(ev)
-    for Box in box_list:
-        Box.draw(main_surface)
+            Table.handle_event(ev)
+    Table.draw()
     pygame.display.flip()
 print(text)
 pygame.quit()
