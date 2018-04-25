@@ -173,12 +173,24 @@ class ManagerTeam:
         self.substitutes = []
         self.build_team_default()
 
-    def set_formation(self,formation):
+    def set_formation(self, formation):
         self.formation = formation
 
     def get_formation(self):
+        return self.formation
+
+    def get_list_formation(self):
         if self.formation == 442:
-            return ['gk', 'cb'] ###continuar, procurar outras formacoes
+            return ['GK', 'CB', 'CB', 'LB', 'RB', 'CM', 'CM', 'LM', 'RM', 'LS', 'RS']
+        if self.formation == 433:
+            return ['GK', 'CB', 'CB', 'LB', 'RB', 'CM', 'CM', 'CM', 'LW', 'RW', 'ST']
+        if self.formation == 532:
+            return ['GK', 'CB', 'CB', 'CB', 'LB', 'RB', 'CM', 'CM', 'CM', 'LS', 'RS']
+        if self.formation == 352:
+            return ['GK', 'CB', 'CB', 'CB', 'CM', 'CM', 'CM', 'LM', 'RM', 'LS', 'RS']
+
+    def get_possible_formation(self):
+        return ['     4 - 4 - 2', '     4 - 3 - 3', '     5 - 3 - 2', '     3 - 5 - 2']
 
     def build_team_default(self):
         all_gk = self.grouping_by_position("gk")
