@@ -9,7 +9,8 @@ def Teste():
     
     boolean = False
     formation = 442
-    return boolean, formation
+    new_team = None
+    return boolean, formation, new_team
 
 def Grouping_By_Position(team_players, group):
     positions = []
@@ -209,6 +210,7 @@ enemy_team = Manager_Team.ManagerTeam(Away_Team)
 
 home_starting_team = manager_team.get_team()
 away_starting_team = enemy_team.get_team()
+Forward_Substitute_Player = Grouping_By_Position(Home_Team, "Forward")[2]
 """   
 Forward_Home_Players = Grouping_By_Position(Home_Team, "Forward")[:2]
 Forward_Away_Players = Grouping_By_Position(Away_Team, "Forward")[:2]
@@ -237,11 +239,12 @@ while Kick_off.timer <= 89:
     hc[i], ac[i] = Kick_off.rolling_game(Home_PlayingTeam, Away_PlayingTeam)
     field = Kick_off.field
     i = i + 1
-    event_check, new_formation = Teste()
+    event_check, new_formation, new_team = Teste()
     if event_check:
         Kick_off.field, Home_PlayingTeam, Away_PlayingTeam = Filling_Field(Kick_off, home_starting_team, away_starting_team, new_formation)
         field = Kick_off.field
-
+    
+    
 print(Kick_off.scores)
 
 
