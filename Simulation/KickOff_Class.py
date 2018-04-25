@@ -187,14 +187,23 @@ class Game:
     def found_the_closest_player(self, team, player_with_ball):
         min_distance = 14624 #Distance between 2 opposite corners
         player_to_receive_order = -1
+        player_to_receive_real_order = -1
         for free_player in team:
             
             if free_player.position != player_with_ball.position:
                 distance_fp_pwb = self.distance_measure(free_player, player_with_ball)
                 if distance_fp_pwb < min_distance:
+                    
                     min_distance = distance_fp_pwb
                     player_to_receive_order = free_player.team_queue
-        return player_to_receive_order
+                    if free_player.position[1] > player_with_ball.position[1] and free_player.field_owner == "Home":
+                        player_to_receive_real_order = free_player.team_queue
+                    if free_player.position[1] < player_with_ball.position[1] and free_player.field_owner == "Away":
+                        player_to_receive_real_order = free_player.team_queue
+        if player_to_receive_real_order == -1:         
+            return player_to_receive_order
+        else:
+            return player_to_receive_real_order
         
 
 class Player:
@@ -238,9 +247,9 @@ class Player:
                     
             elif self.field_owner == "Away" and self.position[1] <= 28: #The player is a member of the away team and he/she is the defense area of the enemy
                 
-                if rand_number >= 40: #This will indicate that the player will shoot
+                if rand_number >= 20: #This will indicate that the player will shoot
                     choice = "Shoot"
-                elif rand_number >= 20 and rand_number < 40: #This will indicate that the player will pass
+                elif rand_number >= 10 and rand_number < 20: #This will indicate that the player will pass
                     choice = "Pass"
                 else: #This will indicate that the player will run
                     choice = "Run"
