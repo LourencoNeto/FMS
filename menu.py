@@ -1,5 +1,6 @@
 from SimulatorModules import *
 
+
 def menu():
     pygame.init()
     pygame.event.set_allowed(None)
@@ -14,8 +15,6 @@ def menu():
     goal = pygame.image.load(final)
 
     font = pygame.font.Font(None, 20)
-    small_rect = (260, 60, 210, 200)
-    some_color = (50, 205, 50)
     clock = pygame.time.Clock()
     Box = InputBox(320, 110, 140)
     Start_Button = Button(315, 200, 100, 40, 34, 13, "Start")

@@ -237,7 +237,6 @@ while Kick_off.timer <= 89:
     hc[i], ac[i] = Kick_off.rolling_game(Home_PlayingTeam, Away_PlayingTeam)
     field = Kick_off.field
     i = i + 1
-    event_check, new_formation = Teste()
     if event_check:
         Kick_off.field, Home_PlayingTeam, Away_PlayingTeam = Filling_Field(Kick_off, home_starting_team, away_starting_team, new_formation)
         field = Kick_off.field

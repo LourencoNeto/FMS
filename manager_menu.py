@@ -3,10 +3,10 @@ import pandas as pd
 
 
 def manager_menu(name, team, Manager = None):
-    database = pd.read_csv('Simulation/Database/FIFA18_database.csv')
 
     next_opponent = 'Liverpool'
     if Manager is None:
+        database = pd.read_csv('Simulation/Database/FIFA18_database.csv')
         data_team = database.loc[database.club == team]
         Manager_Team = ManagerTeam(data_team)
 
@@ -15,7 +15,6 @@ def manager_menu(name, team, Manager = None):
     reserves_team = Manager_Team.get_list_reserves()
     list_formation = Manager_Team.get_list_formation()
 
-    pygame.init()
     pygame.event.set_allowed(None)
     pygame.event.set_allowed([pygame.MOUSEBUTTONDOWN, pygame.QUIT])
     surface_height = 560
@@ -23,7 +22,9 @@ def manager_menu(name, team, Manager = None):
     main_surface = pygame.display.set_mode((surface_width, surface_height))
     font1 = pygame.font.SysFont(None, 20)
     font2 = pygame.font.SysFont(None, 40)
-    clock = pygame.time.Clock()
+    font3 = pygame.font.SysFont(None, 25)
+    file = "Logos\\" + team + ".png"
+    logo = pygame.image.load(file)
     FormationTable = SelectBoxTable(main_surface, Manager_Team.get_possible_formation(), 50, 330, 100, 20)
     IndexTable = SelectBoxTable(main_surface, list_formation, 520, 140, 30, 20)
     MainTeamTable = SelectBoxTable(main_surface, main_team, 550, 140, 170, 20)
@@ -35,9 +36,10 @@ def manager_menu(name, team, Manager = None):
     main_surface.blit(font1.render("Time Titular:", True, pygame.Color("black")), (520, 120))
     main_surface.blit(font1.render("Banco de Reservas:", True, pygame.Color("black")), (250, 120))
     main_surface.blit(font1.render("Formação:", True, pygame.Color("black")), (50, 310))
-    main_surface.blit(font2.render(team, True, pygame.Color("black")), (25, 20))
-    main_surface.blit(font1.render("Treinador: " + name, True, pygame.Color("black")), (25, 60))
+    main_surface.blit(font2.render(team, True, pygame.Color("black")), (75, 25))
+    main_surface.blit(font3.render("Treinador: " + name, True, pygame.Color("black")), (75, 60))
     main_surface.blit(font1.render("Proximo oponente:", True, pygame.Color("black")), (50, 120))
+    main_surface.blit(logo, (25, 10))
     table_selected1 = ''
     table_selected2 = ''
     player1 = ''
