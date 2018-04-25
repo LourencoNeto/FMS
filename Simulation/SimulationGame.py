@@ -5,6 +5,8 @@ Created on Sat Mar 24 17:19:47 2018
 @author: Lourenço Neto
 """
 
+import copy
+
 def Teste():
     
     boolean = False
@@ -211,6 +213,8 @@ enemy_team = Manager_Team.ManagerTeam(Away_Team)
 home_starting_team = manager_team.get_team()
 away_starting_team = enemy_team.get_team()
 Forward_Substitute_Player = Grouping_By_Position(Home_Team, "Forward")[2]
+new_team = copy.copy(home_starting_team)
+new_team[10] = Forward_Substitute_Player
 """   
 Forward_Home_Players = Grouping_By_Position(Home_Team, "Forward")[:2]
 Forward_Away_Players = Grouping_By_Position(Away_Team, "Forward")[:2]
