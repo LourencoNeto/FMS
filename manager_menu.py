@@ -2,7 +2,7 @@ from SimulatorModules import *
 import pandas as pd
 
 
-def manager_menu(name, team, Manager_Team = None):
+def manager_menu(name, team, opponent, Manager_Team = None):
 
     next_opponent = 'Liverpool'
     if Manager_Team is None:
@@ -23,8 +23,11 @@ def manager_menu(name, team, Manager_Team = None):
     font1 = pygame.font.SysFont(None, 20)
     font2 = pygame.font.SysFont(None, 40)
     font3 = pygame.font.SysFont(None, 25)
+    font4 = pygame.font.SysFont(None, 22)
     file = "Logos\\" + team + ".png"
+    file_opponent = "Logos\\" + opponent + ".png"
     logo = pygame.image.load(file)
+    logo_opponent = pygame.image.load(file_opponent)
     FormationTable = SelectBoxTable(main_surface, Manager_Team.get_possible_formation(), 50, 330, 100, 20)
     IndexTable = SelectBoxTable(main_surface, list_formation, 520, 140, 30, 20)
     MainTeamTable = SelectBoxTable(main_surface, main_team, 550, 140, 170, 20)
@@ -38,8 +41,10 @@ def manager_menu(name, team, Manager_Team = None):
     main_surface.blit(font1.render("Formação:", True, pygame.Color("black")), (50, 310))
     main_surface.blit(font2.render(team, True, pygame.Color("black")), (75, 25))
     main_surface.blit(font3.render("Treinador: " + name, True, pygame.Color("black")), (75, 60))
-    main_surface.blit(font1.render("Proximo oponente:", True, pygame.Color("black")), (50, 120))
+    main_surface.blit(font1.render("Proximo oponente:", True, pygame.Color("black")), (25, 120))
+    main_surface.blit(font4.render(opponent, True, pygame.Color("black")), (60, 170))
     main_surface.blit(logo, (25, 10))
+    main_surface.blit(logo_opponent, (10, 145))
     table_selected1 = ''
     table_selected2 = ''
     player1 = ''

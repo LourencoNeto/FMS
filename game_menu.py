@@ -72,9 +72,6 @@ def game_menu(home, away, team_home, team_away):
                 away_box.draw(main_surface)
         score_home = Kick_off.scores[0]
         score_away = Kick_off.scores[1]
-        if Kick_off.timer >= 15:
-            score_home = Kick_off.scores[0] + 1
-            score_away = Kick_off.scores[1] + 1
         if not done:
             Rect1 = pygame.Rect(210, 90, 150, 30)
             Rect2 = pygame.Rect(270, 50, 40, 30)

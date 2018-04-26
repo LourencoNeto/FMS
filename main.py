@@ -9,16 +9,18 @@ name, quit = menu()
 if not quit:
     team, quit = selection_menu()
 if not quit:
-    Manager_Team, quit = manager_menu(name, team)
-opponents = OpponentsOrder(team)
-number = 0
+    opponents = OpponentsOrder(team)
+    number = 0
+    Away_Team = opponents.get_opponent(number)
+    away = opponents.get_opponent_name(number)
+    Manager_Team, quit = manager_menu(name, team, away)
 while not quit:
-    Away_Team = opponents.get_opponent()
-    away = opponents.get_opponent_name()
     quit = game_menu(team, away, Manager_Team, Away_Team)
-    if not quit:
-        Manager_Team, quit = manager_menu(name, team, Manager_Team)
     number += 1
-    if number > 19:
+    if number > 18:
         number = 0
+    Away_Team = opponents.get_opponent(number)
+    away = opponents.get_opponent_name(number)
+    if not quit:
+        Manager_Team, quit = manager_menu(name, team, away, Manager_Team)
 pygame.quit()
