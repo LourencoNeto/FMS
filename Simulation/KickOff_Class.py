@@ -44,8 +44,6 @@ class Game:
             elif previous_score[1] != actual_score[1]: #Goal from the Away Team
                 scorer = 1
             self.original_field_formation(home_team, away_team, scorer)
-        print(self.ball_owner)
-        return home_choice, away_choice
     
     def handle_event_choice(self, team, choices):
         i = 0

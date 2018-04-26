@@ -1,4 +1,6 @@
+import pandas as pd
 import pygame
+import random
 
 
 class InputBox:
@@ -830,3 +832,26 @@ class ManagerTeam:
         for player in self.reserves:
             list.append(player["name"])
         return list
+
+
+class OpponentsOrder:
+    def __init__(self, team):
+        database = pd.read_csv('Simulation/Database/FIFA18_database.csv')
+        premier_league = database.loc[database.league == 'English Premier League']
+        english_teams = premier_league.club.unique().tolist()
+        size = len(english_teams)
+        index_list = list(range(size))
+        random.Random().shuffle(index_list)
+        self.away_team_name = []
+        self.AwayTeamList = []
+        for index in index_list:
+            if english_teams[index] != team:
+                data_team = database.loc[database.club == english_teams[index]]
+                self.AwayTeamList.append(ManagerTeam(data_team))
+                self.away_team_name.append(english_teams[index])
+
+    def get_opponent(self, number):
+        return self.AwayTeamList[number]
+
+    def get_opponent_name(self, number):
+        return self.away_team_name[number]

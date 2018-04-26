@@ -2,7 +2,6 @@ from SimulatorModules import *
 
 
 def menu():
-    pygame.init()
     pygame.event.set_allowed(None)
     pygame.event.set_allowed([pygame.MOUSEBUTTONDOWN, pygame.QUIT, pygame.KEYDOWN])
     name = ''
